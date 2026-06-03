@@ -1,0 +1,207 @@
+{
+  "meta": {
+    "version": "1.0",
+    "last_updated": "2026-06-03",
+    "description": "湖北启贤托儿所有限公司（启贤托育）— 税收优惠政策参数配置",
+    "auto_update_enabled": true,
+    "next_policy_review": "2027-09-01",
+    "review_note": "建议在2027年三季度末检查2028年起的新政策文件，由AI助手自动搜索并更新"
+  },
+
+  "policy_periods": [
+    {
+      "period": "2024-2027",
+      "effective_from": "2024-01-01",
+      "effective_until": "2027-12-31",
+      "status": "active",
+      "label": "现行政策（2024-2027年批次）",
+      "summary": "增值税减按1% + 六税两费减半 + 小型微利5% + 残保金≤30人免征",
+
+      "personal_income_tax": {
+        "basic_deduction": 5000,
+        "comment": "基本减除费用（起征点），每月5000元",
+        "brackets": [
+          [0, 3000, 0.03, 0],
+          [3000, 12000, 0.10, 210],
+          [12000, 25000, 0.20, 1410],
+          [25000, 35000, 0.25, 2660],
+          [35000, 55000, 0.30, 4410],
+          [55000, 80000, 0.35, 7160],
+          [80000, 999999999, 0.45, 15160]
+        ],
+        "comment_brackets": "7级超额累进税率，每行为 [下限, 上限, 税率, 速算扣除数]"
+      },
+
+      "social_insurance": {
+        "base": 5000,
+        "comment_base": "武汉社保缴费基数",
+        "personal_actual": 522,
+        "comment_personal_actual": "个人实际月扣款 = 基数×(8%+2%+0.3%) + 大病7元 = 5000×0.103+7 = 522",
+        "critical_illness_fixed": 7,
+        "comment_critical_illness": "大病医保定额7元（仅个人缴纳，公司部分已含在医疗8.7%费率中）",
+        "personal_rates": {
+          "pension": 0.08,
+          "medical": 0.02,
+          "unemployment": 0.003
+        },
+        "comment_personal_rates": "鄂人社发〔2023〕: 养老8%+医疗2%+失业0.3%+大病7元",
+        "company_rates": {
+          "pension": 0.16,
+          "medical": 0.087,
+          "unemployment": 0.007,
+          "injury": 0.002
+        },
+        "comment_company_rates": "鄂人社发〔2023〕+实际税票核定: 养老16%+医疗8.7%(含生育+大病)+失业0.7%+工伤0.2%(一类风险)",
+        "housing_fund_personal": 0.0,
+        "housing_fund_company": 0.0,
+        "comment_housing_fund": "公积金（当前未缴纳）"
+      },
+
+      "vat": {
+        "small_scale_nominal_rate": 0.03,
+        "small_scale_effective_rate": 0.01,
+        "comment_rate": "小规模纳税人名义3%，减按1%征收",
+        "quarterly_exempt_threshold": 300000,
+        "comment_threshold": "季度不含税收入≤30万免征增值税",
+        "policy_ref": "财税〔2023〕19号"
+      },
+
+      "surcharges": {
+        "six_two_half_enabled": true,
+        "comment_six_two": "六税两费减半征收（小规模纳税人+小型微利企业适用）",
+        "urban_construction_nominal": 0.07,
+        "urban_construction_effective": 0.035,
+        "education_nominal": 0.03,
+        "education_effective": 0.015,
+        "local_education_nominal": 0.02,
+        "local_education_effective": 0.01,
+        "policy_ref": "财税〔2022〕10号",
+        "half_multiplier": 0.5
+      },
+
+      "corporate_income_tax": {
+        "standard_rate": 0.25,
+        "small_low_profit_effective_rate": 0.05,
+        "comment_rate": "小型微利：减按25%×20%=5%实际税负",
+        "small_low_profit_criteria": {
+          "max_annual_taxable_income": 3000000,
+          "max_employees": 300,
+          "max_assets_wan": 5000,
+          "comment": "年利润≤300万 + 员工≤300 + 资产≤5000万 = 小型微利企业"
+        },
+        "policy_ref": "财税〔2023〕12号"
+      },
+
+      "stamp_duty": {
+        "half_enabled": true,
+        "comment_half": "六税两费减半适用于印花税",
+        "categories": {
+          "capital_book": {
+            "name": "资金账簿",
+            "nominal_rate": 0.00025,
+            "effective_rate": 0.000125,
+            "basis": "实收资本+资本公积",
+            "comment": "注册资本到位/增资时缴纳，已缴部分不重复"
+          },
+          "purchase_contract": {
+            "name": "购销合同",
+            "nominal_rate": 0.0003,
+            "effective_rate": 0.00015,
+            "basis": "购销合同金额",
+            "comment": "按季汇总申报"
+          },
+          "loan_contract": {
+            "name": "借款合同",
+            "nominal_rate": 0.00005,
+            "effective_rate": 0.000025,
+            "basis": "借款金额",
+            "comment": "银行贷款/融资"
+          },
+          "tech_contract": {
+            "name": "技术合同",
+            "nominal_rate": 0.0003,
+            "effective_rate": 0.00015,
+            "basis": "技术合同金额",
+            "comment": "技术开发/转让/咨询/服务"
+          },
+          "property_lease": {
+            "name": "财产租赁合同",
+            "nominal_rate": 0.001,
+            "effective_rate": 0.0005,
+            "basis": "租赁金额",
+            "comment": "房屋/设备租赁"
+          },
+          "other_books": {
+            "name": "其他账簿",
+            "nominal_rate": 0.0,
+            "effective_rate": 0.0,
+            "basis": "—",
+            "comment": "免征（财税〔2018〕50号）"
+          }
+        },
+        "policy_ref": "印花税法（2022.7.1）+ 财税〔2022〕10号"
+      },
+
+      "disabled_employment_fund": {
+        "required_ratio": 0.015,
+        "comment_ratio": "法定安排残疾人就业比例1.5%",
+        "micro_exempt_threshold": 30,
+        "comment_micro": "在职职工≤30人全额免征",
+        "salary_cap_multiplier": 2.0,
+        "comment_salary_cap": "工资基数封顶：当地社平工资×2",
+        "tier_reduction": {
+          "full_compliance": { "min_ratio": 0.015, "rate": 0.0, "label": "达标≥1.5%，全额免征" },
+          "partial_compliance": { "min_ratio": 0.01, "rate": 0.5, "label": "达标1%~1.5%，减按50%征收" },
+          "non_compliance": { "min_ratio": 0.0, "rate": 0.9, "label": "不足1%，按90%征收" }
+        },
+        "policy_ref": "发改价格规〔2019〕2015号 / 财税〔2019〕98号 / 财税〔2018〕39号"
+      }
+    },
+
+    {
+      "period": "2028-2030",
+      "effective_from": "2028-01-01",
+      "effective_until": "2030-12-31",
+      "status": "placeholder",
+      "label": "待确认（2028-2030年批次）",
+      "summary": "⚠️ 当前为国家政策到期后的占位配置，使用2024-2027参数作为基准。请在2027年三季度后根据新政策更新。",
+      "inherit_from": "2024-2027",
+      "update_instruction": "运行 AI 政策巡检：搜索「国家税务总局 2028年 增值税小规模纳税人 优惠政策」等关键词，对比现行参数后更新本段。"
+    },
+
+    {
+      "period": "2031-2035",
+      "effective_from": "2031-01-01",
+      "effective_until": "2035-12-31",
+      "status": "placeholder",
+      "label": "远期预留（2031-2035年批次）",
+      "summary": "远期预留区间，届时根据国家中长期税制改革方向调整。",
+      "inherit_from": "2028-2030",
+      "update_instruction": "远期占位，待接近2030年时更新。"
+    }
+  ],
+
+  "special_deductions": {
+    "comment": "个人所得税专项附加扣除标准（2026年适用）",
+    "child_education": { "monthly": 2000, "unit": "元/人", "note": "3岁至博士" },
+    "infant_care": { "monthly": 2000, "unit": "元/人", "note": "0~3岁婴幼儿" },
+    "elderly_care": { "monthly": 3000, "unit": "元/月", "note": "60岁以上父母，独生子女全额" },
+    "housing_loan_interest": { "monthly": 1000, "unit": "元/月", "note": "首套房" },
+    "housing_rent": { "monthly": 1500, "unit": "元/月", "note": "武汉（省会城市）" },
+    "continuing_education": { "monthly": 400, "unit": "元/月", "note": "学历继续教育" }
+  },
+
+  "auto_update": {
+    "enabled": true,
+    "check_frequency": "每季度一次（1月/4月/7月/10月）",
+    "search_keywords": [
+      "国家税务总局 小规模纳税人 增值税 优惠政策",
+      "国家税务总局 六税两费 减半 延续",
+      "国家税务总局 小型微利企业 所得税 优惠",
+      "国家税务总局 残疾人就业保障金 减免",
+      "湖北省 中小企业 税收优惠 助企"
+    ],
+    "update_procedure": "1. WebSearch 搜索最新政策 → 2. WebFetch 获取原文 → 3. 对比 tax_policies.json → 4. 如有变更则更新对应区间 → 5. 更新 meta.last_updated",
+    "last_auto_check": null
+  }
+}
